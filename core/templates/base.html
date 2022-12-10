@@ -1,0 +1,59 @@
+{% load cms_tags menu_tags sekizai_tags static i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    {% block meta %}
+        <meta name="description" content="{% page_attribute meta_description %}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="{% page_attribute "page_title" %}"/>
+        <meta property="og:description" content="{% page_attribute meta_description %}"/>
+    {% endblock meta %}
+    {% block canonical_url %}
+        <link rel="canonical" href="{{ request.build_absolute_uri }}"/>
+        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+    {% endblock canonical_url %}
+    {% block fb_meta %}{% endblock fb_meta %}
+    <title>{% block title %}{% page_attribute "page_title" %}{% endblock %}</title>
+    {% block base_css %}{% endblock %}
+    {% block page_head %}{% endblock %}
+
+
+    <link href="{% static 'core/lib/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'core/lib/gfont.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'core/lib/owl.carousel.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/lib/jquery-ui.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    {% render_block "css" %}
+
+</head>
+
+
+<body {% block body_attrs %}{% endblock %}>
+{% cms_toolbar %}
+
+
+
+{% block content %}
+    {% placeholder "Content" %}
+{% endblock content %}
+
+
+
+<script src="{% static 'core/lib/jq.js' %}"></script>
+{% block base_js %}{% endblock %}
+{% render_block 'js' %}
+
+<script src="{% static 'core/lib/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'core/lib/owl.carousel.min.js' %}"></script>
+<script src="{% static 'core/lib/jquery-ui.min.js' %}"></script>
+<script src="{% static 'core/script.js' %}"></script>
+
+{% block end_js %}{% endblock %}
+{% block bottom_css %}{% endblock %}
+</body>
+
+
+</html>
